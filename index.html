@@ -14,31 +14,12 @@
       min-height: 100vh;
     }
 
-    nav {
-      text-align: center;
-      background-color: #f8f8f8;
-      padding: 10px;
-      border-bottom: 1px solid #ddd;
-    }
-
-    nav a {
-      margin: 0 10px;
-      color: #007bff;
-      text-decoration: none;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .chatbot-container, .privacy-policy {
+    .chatbot-container {
       flex: 1;
-      display: none;
-      padding: 20px;
-    }
-
-    .chatbot-container.active, .privacy-policy.active {
       display: flex;
       justify-content: center;
       align-items: stretch;
+      padding-bottom: 60px;
     }
 
     zapier-interfaces-chatbot-embed {
@@ -46,13 +27,6 @@
       height: 100vh;
       max-width: 100%;
       border: none;
-    }
-
-    .privacy-policy {
-      flex-direction: column;
-      max-width: 800px;
-      margin: auto;
-      line-height: 1.6;
     }
 
     footer {
@@ -63,51 +37,30 @@
       color: #333;
     }
 
+    footer a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
     @media (max-width: 768px) {
       .chatbot-container {
         padding-bottom: 80px;
-      }
-
-      footer {
-        font-size: 12px;
       }
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a onclick="showSection('chatbot')">Chatbot</a>
-    <a onclick="showSection('privacy')">Privacy Policy</a>
-  </nav>
-
-  <div id="chatbot" class="chatbot-container active">
+  <div class="chatbot-container">
     <zapier-interfaces-chatbot-embed
       is-popup="false"
       chatbot-id="cm6tqq92t0028xkthhh9woid1">
     </zapier-interfaces-chatbot-embed>
   </div>
 
-  <div id="privacy" class="privacy-policy">
-    <h1>Privacy Policy</h1>
-    <p>This chatbot, RoomBuddy, is designed to provide helpful information for hotel guests. We do not collect or store any personal information through this chatbot.</p>
-
-    <p>All conversations remain local to your session and are not tracked or recorded. Your privacy is our priority, and we ensure no data is shared or sold to third parties.</p>
-
-    <p>This site is operated as a utility for guests and is intended to provide information and convenience. If you have any questions or concerns about your privacy or data, please contact hotel staff directly.</p>
-  </div>
-
   <footer>
-    Powered by RoomBuddy
+    Powered by RoomBuddy • <a href="privacy-policy.html">Privacy Policy</a>
   </footer>
-
-  <script>
-    function showSection(id) {
-      document.getElementById("chatbot").classList.remove("active");
-      document.getElementById("privacy").classList.remove("active");
-      document.getElementById(id).classList.add("active");
-    }
-  </script>
 
 </body>
 </html>
