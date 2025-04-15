@@ -1,65 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>RoomBuddy Chatbot</title>
+  <script async type="module" src="https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js"></script>
   <style>
     body {
       margin: 0;
-      padding: 0;
       font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
-    .chatbot-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      height: 100vh;
-      background-color: #f4f4f4;
-      box-sizing: border-box;
+    nav {
+      text-align: center;
+      background-color: #f8f8f8;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    nav a {
+      margin: 0 10px;
+      color: #007bff;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .chatbot-container, .privacy-policy {
+      flex: 1;
+      display: none;
       padding: 20px;
     }
 
-    zapier-interfaces-chatbot-embed {
-      width: 100% !important;
-      height: 100vh !important;
-      max-width: 100% !important;
+    .chatbot-container.active, .privacy-policy.active {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
     }
 
-    @media (max-width: 768px) {
-      zapier-interfaces-chatbot-embed {
-        height: 90vh !important;
-        width: 100% !important;
-      }
+    zapier-interfaces-chatbot-embed {
+      width: 100%;
+      height: 100vh;
+      max-width: 100%;
+      border: none;
+    }
+
+    .privacy-policy {
+      flex-direction: column;
+      max-width: 800px;
+      margin: auto;
+      line-height: 1.6;
     }
 
     footer {
-      position: fixed;
-      bottom: 10px;
-      left: 0;
-      right: 0;
       text-align: center;
-      padding: 10px;
-      font-size: 12px;
-      color: #888;
+      padding: 16px;
+      font-size: 14px;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+
+    @media (max-width: 768px) {
+      .chatbot-container {
+        padding-bottom: 80px;
+      }
+
+      footer {
+        font-size: 12px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="chatbot-container">
-    <zapier-interfaces-chatbot-embed 
-      is-popup="false" 
+
+  <nav>
+    <a onclick="showSection('chatbot')">Chatbot</a>
+    <a onclick="showSection('privacy')">Privacy Policy</a>
+  </nav>
+
+  <div id="chatbot" class="chatbot-container active">
+    <zapier-interfaces-chatbot-embed
+      is-popup="false"
       chatbot-id="cm6tqq92t0028xkthhh9woid1">
     </zapier-interfaces-chatbot-embed>
   </div>
 
+  <div id="privacy" class="privacy-policy">
+    <h1>Privacy Policy</h1>
+    <p>This chatbot, RoomBuddy, is designed to provide helpful information for hotel guests. We do not collect or store any personal information through this chatbot.</p>
+
+    <p>All conversations remain local to your session and are not tracked or recorded. Your privacy is our priority, and we ensure no data is shared or sold to third parties.</p>
+
+    <p>This site is operated as a utility for guests and is intended to provide information and convenience. If you have any questions or concerns about your privacy or data, please contact hotel staff directly.</p>
+  </div>
+
   <footer>
-    <p>Powered by <strong>RoomBuddy</strong></p>
-    <p><a href="/privacy-policy">Privacy Policy</a></p>
+    Powered by RoomBuddy
   </footer>
 
-  <script async type="module" src="https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js"></script>
+  <script>
+    function showSection(id) {
+      document.getElementById("chatbot").classList.remove("active");
+      document.getElementById("privacy").classList.remove("active");
+      document.getElementById(id).classList.add("active");
+    }
+  </script>
+
 </body>
 </html>
